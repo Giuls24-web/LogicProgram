@@ -11,7 +11,6 @@ def mostrar_menu_tematicas():
     return int(input("Elije un número: "))
  
 # Función para elegir una palabra aleatoria de la temática seleccionada
-# Parámetro: tema (número seleccionado por el usuario)
 # Retorna una palabra aleatoria de la categoría elegida
 def elegir_palabra(tema):
     if tema == 1:
@@ -23,15 +22,20 @@ def elegir_palabra(tema):
     return random.choice(opciones)
 
 # Función para mostrar el progreso actual de la palabra
-# Parámetros: palabra (la palabra completa), letras_adivinadas (lista de letras adivinadas)
 # Retorna un string con las letras adivinadas y guiones bajos para las restantes
 def mostrar_progreso(palabra, letras_adivinadas):
-    return ''.join([letra if letra.upper() in letras_adivinadas else '_' for letra in palabra])
+    progreso = ""
+    for letra in palabra:
+        if letra.upper() in letras_adivinadas:
+            progreso += letra  # Agrega la letra si ha sido adivinada
+        else:
+            progreso += "_"  # Agrega un guion bajo si no ha sido adivinada
+    return progreso
 
 # Función principal del juego del ahorcado
 # Parámetro: palabra (la palabra que debe adivinarse)
 def jugar_ahorcado(palabra):
-    dibujo = ("  |  ","  |  ", "  O  "," /|\ ", "  |  "," / \  ") # Representación gráfica del ahorcado
+    dibujo = ('  |  ','  |  ', '  O  ',' /|\\', '  |  ',' / \\ ') # Representación gráfica del ahorcado
     intentos = 0 # Contador de intentos fallidos
     letras_adivinadas = [] # Lista para almacenar las letras ya adivinadas
 
